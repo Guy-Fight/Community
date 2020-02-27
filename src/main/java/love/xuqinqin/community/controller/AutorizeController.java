@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * @Author FGuy
@@ -33,7 +36,8 @@ public class AutorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
                            @RequestParam(name="state") String state,
-                           HttpSession session){
+                           HttpSession session) throws Exception {
+        //封装tokenDTO
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientID);
         accessTokenDTO.setClient_secret(clientSecret);
@@ -44,7 +48,20 @@ public class AutorizeController {
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         //根据token码作为请求体get请求，响应得到用户json，并转化为GithubUser对象接收；
         GithubUser user = gitHubProvider.getUser(accessToken);
-        session.setAttribute("user",user);
+        if(user != null){
+            //登录成功
+            //session
+            session.setAttribute("user",user);
+            //cookie
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("","","");
+
+
+
+        }else{
+            //登录失败
+
+        }
         //返回index页面
         return "redirect:/";
     }
