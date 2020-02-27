@@ -10,14 +10,14 @@ public class User {
     private String name;
     private String accountId;
     private String token;
-    private String gmtCreate;
-    private String gmtModified;
+    private Long gmtCreate;
+    private Long gmtModified;
 
     public User(){
 
     }
 
-    public User(Integer id,String name,String accountId,String token,String gmtCreate,String gmtModified){
+    public User(Integer id,String name,String accountId,String token,Long gmtCreate,Long gmtModified){
         this.id = id;
         this.name = name;
         this.accountId = accountId;
@@ -59,19 +59,19 @@ public class User {
         this.token = token;
     }
 
-    public String getGmtCreate() {
+    public Long getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(String gmtCreate) {
+    public void setGmtCreate(Long gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public String getGmtModified() {
+    public Long getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(String gmtModified) {
+    public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
     }
 
