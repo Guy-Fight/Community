@@ -2,7 +2,9 @@ package love.xuqinqin.community.controller;
 
 import love.xuqinqin.community.dto.AccessTokenDTO;
 import love.xuqinqin.community.dto.GithubUser;
+import love.xuqinqin.community.model.User;
 import love.xuqinqin.community.provider.GitHubProvider;
+import love.xuqinqin.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class AutorizeController {
 
     @Autowired
     private GitHubProvider gitHubProvider;
+
+    @Autowired
+    private UserService userService;
 
     @Value("${github.client.id}")
     private String clientID;
@@ -52,9 +57,8 @@ public class AutorizeController {
             //登录成功
             //session
             session.setAttribute("user",user);
+            userService.Ins(new User(2,user.getName(),String.valueOf(user.getId()),accessToken,"demo","demo"));
             //cookie
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("","","");
 
 
 
