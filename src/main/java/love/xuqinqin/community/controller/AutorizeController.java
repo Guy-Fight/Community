@@ -2,9 +2,9 @@ package love.xuqinqin.community.controller;
 
 import love.xuqinqin.community.dto.AccessTokenDTO;
 import love.xuqinqin.community.dto.GithubUser;
+import love.xuqinqin.community.mapper.UserMapper;
 import love.xuqinqin.community.model.User;
 import love.xuqinqin.community.provider.GitHubProvider;
-import love.xuqinqin.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.UUID;
 
 /**
  * @Author FGuy
@@ -27,7 +25,7 @@ public class AutorizeController {
     private GitHubProvider gitHubProvider;
 
     @Autowired
-    private UserService userService;
+    private UserMapper userMapper;
 
     @Value("${github.client.id}")
     private String clientID;
@@ -52,16 +50,19 @@ public class AutorizeController {
         //根据AccessTokenDTO对象转化的json作为请求体post请求，响应得到token码；
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         //根据token码作为请求体get请求，响应得到用户json，并转化为GithubUser对象接收；
-        GithubUser user = gitHubProvider.getUser(accessToken);
-        if(user != null){
+        GithubUser githubUser = gitHubProvider.getUser(accessToken);
+        if(githubUser != null){
             //登录成功
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtCreate());
+            userMapper.insert(user);
             //session
-            session.setAttribute("user",user);
-            userService.Ins(new User(2,user.getName(),String.valueOf(user.getId()),accessToken,"demo","demo"));
+            session.setAttribute("user",githubUser);
             //cookie
-
-
-
         }else{
             //登录失败
 
