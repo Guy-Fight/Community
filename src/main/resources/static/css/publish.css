@@ -1,0 +1,17 @@
+.container{
+    margin-top: 100px;
+    background-color: white;
+}
+#info{
+    box-sizing: border-box;
+}
+#commit{
+     float: right;
+     margin-bottom: 20px;
+}
+#tip{
+    padding: 20px;
+}
+blockquote .small:before{
+    content: none;
+}

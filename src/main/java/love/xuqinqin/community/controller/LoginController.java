@@ -20,20 +20,18 @@ public class LoginController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/")
-    public String Login(HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                request.getSession().setAttribute("user",userMapper.Select(token));
-                break;
-            }
-        }
-
-
-
-        return "index";
-    }
+//    @GetMapping("/**")
+//    public String Login(HttpServletRequest request){
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie cookie : cookies) {
+//            if(cookie.getName().equals("token")){
+//                String token = cookie.getValue();
+//                request.getSession().setAttribute("user",userMapper.Select(token));
+//                break;
+//            }
+//        }
+//
+//        return "index";
+//    }
 
 }
