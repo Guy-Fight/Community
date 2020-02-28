@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 /**
@@ -63,6 +62,7 @@ public class AutorizeController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setBio(githubUser.getBio());
             userMapper.insert(user);
             //session
             request.getSession().setAttribute("user",githubUser);
@@ -70,7 +70,7 @@ public class AutorizeController {
             response.addCookie(new Cookie("token",user.getToken()));
         }else{
             //登录失败
-
+            //request.getSession().setAttribute("login_tip","登陆失败，请重试");
         }
         //返回index页面
         return "redirect:/";

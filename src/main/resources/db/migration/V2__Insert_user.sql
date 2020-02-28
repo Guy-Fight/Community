@@ -1,0 +1,1 @@
+insert into user(name, accountId, token, gmtCreate, gmtModified) value ('123','321','123',123123,123123);
