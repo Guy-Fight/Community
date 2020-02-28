@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
@@ -39,7 +42,8 @@ public class AutorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
                            @RequestParam(name="state") String state,
-                           HttpSession session) throws Exception {
+                           HttpServletRequest request,
+                           HttpServletResponse response) throws Exception {
         //封装tokenDTO
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientID);
@@ -61,8 +65,9 @@ public class AutorizeController {
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
             //session
-            session.setAttribute("user",githubUser);
+            request.getSession().setAttribute("user",githubUser);
             //cookie
+            response.addCookie(new Cookie("token",user.getToken()));
         }else{
             //登录失败
 
