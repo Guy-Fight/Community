@@ -21,3 +21,10 @@ textarea{
 #writeTip{
     float: right;
 }
+#search .input-group-addon button{
+    border-width: 0px;
+}
+
+#search .input-group-addon {
+    padding: 0px;
+}
