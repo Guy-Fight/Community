@@ -1,0 +1,17 @@
+.container{
+    background-color: white;
+}
+#creatorIcon{
+    width: 64px;
+    height: 64px;
+}
+.media{
+    margin-bottom: 15px;
+}
+.media-description{
+    margin: 0px;
+}
+.media-data{
+    margin: 0px;
+    color: #999;
+}

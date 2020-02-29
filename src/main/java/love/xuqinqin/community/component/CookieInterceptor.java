@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Author FGuy
@@ -21,13 +22,30 @@ public class CookieInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession session = request.getSession();
         Cookie[] cookies = request.getCookies();
         if(cookies != null){
+            /*
+            * 遍历Cookie，若Cookie中有token，且token值在数据库中存在，则存入session，记为已登录。
+            *            若没有token值，或token值在数据库中不存在，则判断session中user值不为空后，删除user值。记为未登录，或退出登录。(最好把token值也删除)
+            * */
             for (Cookie cookie : cookies) {
                 if(cookie.getName().equals("token")){
                     String token = cookie.getValue();
-                    request.getSession().setAttribute("user",userMapper.Select(token));
-                    break;
+                    if(userMapper.Select(token) != null){
+                        session.setAttribute("user",userMapper.Select(token));
+                        return true;
+                    }
+                }
+            }
+            if(session.getAttribute("user") != null){
+                session.removeAttribute("user");
+            }
+            for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("token")){
+                    //设置时长为0，视为删除
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
                 }
             }
         }

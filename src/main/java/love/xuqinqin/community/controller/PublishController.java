@@ -26,7 +26,11 @@ public class PublishController {
     private PublishMapper publishMapper;
 
     @GetMapping("/publish")
-    public String publish(){
+    public String publish(HttpServletRequest request){
+        //判断是否登录
+        if(request.getSession().getAttribute("user") == null){
+            return "redirect:/";
+        }
         return "/publish";
     }
 
@@ -36,6 +40,11 @@ public class PublishController {
                             @RequestParam(name = "tag")String tag,
                             HttpServletRequest request,
                             Map map){
+        //判断是否登录
+        if(request.getSession().getAttribute("user") == null){
+            return "redirect:/";
+        }
+
         map.put("title",title);
         map.put("description",description);
         map.put("tag",tag);
