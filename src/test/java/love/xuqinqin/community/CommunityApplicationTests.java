@@ -12,7 +12,8 @@ class CommunityApplicationTests {
 
     @Test
     void contextLoads() throws IOException {
-        System.out.println(new Long("110"));
+        int maxPage = (int)Math.ceil(20/8)+1;
+        System.out.println(Math.ceil(20/8));
     }
 
 }

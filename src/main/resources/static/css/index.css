@@ -22,3 +22,6 @@
 #search .input-group-addon {
     padding: 0px;
 }
+.pagination{
+    margin: 0px auto 10px;
+}

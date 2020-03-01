@@ -20,4 +20,7 @@ public interface PublishMapper {
     @Select("select * from publish")
     List<Publish> select();
 
+    @Select("select * from publish limit #{startNum},#{maxNum}")
+    List<Publish> selectLimit(int startNum,int maxNum);
+
 }
