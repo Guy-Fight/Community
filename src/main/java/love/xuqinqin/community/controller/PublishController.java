@@ -3,17 +3,14 @@ package love.xuqinqin.community.controller;
 import love.xuqinqin.community.mapper.PublishMapper;
 import love.xuqinqin.community.model.Publish;
 import love.xuqinqin.community.model.User;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @Author FGuy
@@ -67,7 +64,7 @@ public class PublishController {
         publish.setDescription(description);
         publish.setTag(tag);
         User user = (User)request.getSession().getAttribute("user");
-        publish.setCreator(Integer.valueOf(user.getAccountId()));
+        publish.setCreator(user.getId());
         publish.setGmt_create(System.currentTimeMillis());
         publish.setGmt_modified(publish.getGmt_create());
         publishMapper.insert(publish);

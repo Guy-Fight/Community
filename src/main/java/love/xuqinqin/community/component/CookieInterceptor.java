@@ -35,19 +35,15 @@ public class CookieInterceptor implements HandlerInterceptor {
                     if(userMapper.Select(token) != null){
                         session.setAttribute("user",userMapper.Select(token));
                         return true;
+                    }else{
+                        cookie.setMaxAge(0);
+                        response.addCookie(cookie);
                     }
                 }
             }
-            if(session.getAttribute("user") != null){
-                session.removeAttribute("user");
-            }
-            for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("token")){
-                    //设置时长为0，视为删除
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                }
-            }
+        }
+        if(session.getAttribute("user") != null){
+            session.removeAttribute("user");
         }
         return true;
     }

@@ -21,11 +21,11 @@ public class MyMVCConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/index.html").setViewName("index");
-        registry.addViewController("/publish").setViewName("publish");
-        registry.addViewController("/publish.html").setViewName("publish");
+//        registry.addViewController("/").setViewName("index");
+//        registry.addViewController("/index").setViewName("index");
+//        registry.addViewController("/index.html").setViewName("index");
+//        registry.addViewController("/publish").setViewName("publish");
+//        registry.addViewController("/publish.html").setViewName("publish");
     }
 
     @Bean

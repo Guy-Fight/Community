@@ -58,16 +58,17 @@
                     <h1><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  发现</h1>
                 </div>
 
-                <div class="media">
+                <div class="media" th:each="info,infoStat:${questions}">
                     <div class="media-left media-middle">
                         <a href="#">
-                            <img id="creatorIcon" class="media-object img-thumbnail" src="https://avatars0.githubusercontent.com/u/54472359?s=460&v=4">
+                            <img id="creatorIcon" class="media-object img-thumbnail" src="https://avatars0.githubusercontent.com/u/54472359?s=460&v=4" th:src="${info.user.avatar_url}">
                         </a>
                     </div>
                     <div class="media-body">
-                        <a href="#"><h4 class="media-heading">Middle aligned media</h4></a>
-                        <h5 class="media-description">...</h5>
-                        <p class="media-data">2个回复·31次浏览·1个小时前</p>
+                        <a href="#"><h4 class="media-heading" th:text="${info.title}">Middle aligned media</h4></a>
+                        <h5 class="media-description" th:text="${info.description}">...</h5>
+                        <p class="media-data"><span th:text="${info.comment_count}">2</span>个回复·<span th:text="${info.view_count}">31</span>次浏览·<span class="timeC" th:tip="${info.gmt_create}" ></span></p>
+<!--                        <p th:text="${info.gmt_create}/1000/60/60"></p>-->
                     </div>
                 </div>
 
@@ -77,5 +78,6 @@
             </div>
         </div>
     </div>
+    <script src="js/index_timeC.js"></script>
 </body>
 </html>

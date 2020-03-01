@@ -63,6 +63,7 @@ public class AutorizeController {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             user.setBio(githubUser.getBio());
+            user.setAvatar_url(githubUser.getAvatar_url());
             userMapper.insert(user);
             //session
             request.getSession().setAttribute("user",githubUser);
