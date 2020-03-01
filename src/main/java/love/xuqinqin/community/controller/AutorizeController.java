@@ -68,7 +68,9 @@ public class AutorizeController {
             //session
             request.getSession().setAttribute("user",githubUser);
             //cookie
-            response.addCookie(new Cookie("token",user.getToken()));
+            Cookie cookie = new Cookie("token",user.getToken());
+            cookie.setMaxAge(1576800000);
+            response.addCookie(cookie);
         }else{
             //登录失败
             //request.getSession().setAttribute("login_tip","登陆失败，请重试");
