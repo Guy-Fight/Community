@@ -1,7 +1,6 @@
 package love.xuqinqin.community.component;
 
 import love.xuqinqin.community.mapper.UserMapper;
-import org.apache.ibatis.plugin.Intercepts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

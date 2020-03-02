@@ -52,6 +52,24 @@ public class QuestionService {
         return questionDtos;
     }
 
+    public List<QuestionDto> getMyQuestionDto(int Creator,int Page){
+        this.Page = Page;
+        this.dbcount = publishMapper.selectByCreator(Creator).size();
+        List<Publish> publishes = publishMapper.selectLimitByCreator(Creator,(this.showPage(Page)-1)*8,maxNum);
+        List<QuestionDto> questionDtos = new ArrayList<QuestionDto>();
+        if(publishes == null || publishes.size() == 0){
+            return null;
+        }
+        for (Publish publish : publishes) {
+            QuestionDto questionDto = new QuestionDto();
+            BeanUtils.copyProperties(publish,questionDto);
+//            questionDto.setGmt_create(new Date().getTime() - publish.getGmt_create());
+            questionDto.setUser(userMapper.SelectByAccountId(String.valueOf(publish.getCreator())));
+            questionDtos.add(questionDto);
+        }
+        return questionDtos;
+    }
+
     public PaginationDto getPaginationDto(){
         int nowPage = this.showPage(Page);
         int maxPage = 0;
@@ -59,6 +77,9 @@ public class QuestionService {
             maxPage = dbcount/maxNum + 1;
         }else{
             maxPage = dbcount/maxNum;
+            if(maxPage == 0){
+                maxPage = 1;
+            }
         }
         PaginationDto paginationDto = new PaginationDto();
         paginationDto.setNowNum(nowPage);
@@ -106,6 +127,10 @@ public class QuestionService {
             maxPage = dbcount/maxNum + 1;
         }else{
             maxPage = dbcount/maxNum;
+            if(maxPage == 0){
+                maxPage = 1;
+                showPage = 1;
+            }
         }
         if(showPage <= 0){
             showPage = 1;

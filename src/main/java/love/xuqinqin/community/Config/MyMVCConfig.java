@@ -1,7 +1,7 @@
 package love.xuqinqin.community.Config;
 
 import love.xuqinqin.community.component.CookieInterceptor;
-import love.xuqinqin.community.component.IndexInterceptor;
+import love.xuqinqin.community.component.SessionInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -33,21 +33,16 @@ public class MyMVCConfig implements WebMvcConfigurer {
         return new CookieInterceptor();
     }
 
-    @Bean
-    public HandlerInterceptor getIndexInterceptor(){
-        return new IndexInterceptor();
-    }
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 //        List<String> paths = new ArrayList<String>();
 //        paths.add("/");
 //        paths.add("/index");
 //        paths.add("/index.html");
-//        paths.add("/asserts/**");
+//        paths.add("/css/**");
+//        paths.add("/js/**");
 //        paths.add("/webjars/**");
 //        paths.add("/callback");
         registry.addInterceptor(getCookieInterceptor()).addPathPatterns("/**");
-//        registry.addInterceptor(getIndexInterceptor()).addPathPatterns("/**").excludePathPatterns(paths);
     }
 }

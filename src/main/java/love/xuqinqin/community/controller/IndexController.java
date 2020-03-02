@@ -21,7 +21,7 @@ public class IndexController {
     private QuestionService questionService;
 
     @GetMapping(value = {"/index","/"})
-    public String index(@RequestParam(name="page",required = false)String page, Model model) throws Exception{
+    public String index(@RequestParam(name="page",required = false)String page, Model model){
         int IntPage = 1;
         try{
             IntPage = Integer.valueOf(page);

@@ -11,16 +11,14 @@ import javax.servlet.http.HttpServletResponse;
  * @Author FGuy
  * @Date 2020/2/28 16:52
  */
-public class IndexInterceptor implements HandlerInterceptor {
+public class SessionInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Cookie[] cookie = request.getCookies();
-        if(cookie == null || cookie.length == 0){
+        if(request.getSession().getAttribute("user") == null){
             response.sendRedirect("/");
-            return false;
         }
-        return true;
+        return false;
     }
 
     @Override
