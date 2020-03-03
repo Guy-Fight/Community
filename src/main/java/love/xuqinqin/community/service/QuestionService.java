@@ -37,7 +37,7 @@ public class QuestionService {
     public List<QuestionDto> getQuestionDto(int Page){
         this.Page = Page;
         this.dbcount = publishMapper.select().size();
-        List<Publish> publishes = publishMapper.selectLimit((this.showPage(Page)-1)*8,maxNum);
+        List<Publish> publishes = publishMapper.selectLimit((this.showPage(Page) - 1) * maxNum,maxNum);
         List<QuestionDto> questionDtos = new ArrayList<QuestionDto>();
         if(publishes == null || publishes.size() == 0){
             return null;
