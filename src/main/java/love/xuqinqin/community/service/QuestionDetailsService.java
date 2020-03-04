@@ -31,7 +31,7 @@ public class QuestionDetailsService {
     public QuestionDto getQuestionDto(int Id){
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(publishMapper.selectQuestion(Id),questionDto);
-        questionDto.setUser(userMapper.SelectByAccountId(String.valueOf(questionDto.getCreator())));
+        questionDto.setUser(userMapper.SelectById(String.valueOf(questionDto.getCreator())));
         return questionDto;
     }
 

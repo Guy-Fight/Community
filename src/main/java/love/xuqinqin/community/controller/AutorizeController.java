@@ -54,7 +54,7 @@ public class AutorizeController {
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         //根据token码作为请求体get请求，响应得到用户json，并转化为GithubUser对象接收；
         GithubUser githubUser = gitHubProvider.getUser(accessToken);
-        if(githubUser != null){
+        if(githubUser != null && githubUser.getId() != null){
             //登录成功
             User user = new User();
             user.setToken(UUID.randomUUID().toString());
@@ -64,7 +64,14 @@ public class AutorizeController {
             user.setGmtModified(user.getGmtCreate());
             user.setBio(githubUser.getBio());
             user.setAvatar_url(githubUser.getAvatar_url());
-            userMapper.insert(user);
+
+            if(userMapper.SelectByAccountId(user.getAccountId()) == null){
+                userMapper.insert(user);
+            }else{
+                userMapper.UpdateByToken(user);
+            }
+
+
             //session
             request.getSession().setAttribute("user",githubUser);
             //cookie

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.css">
     <link rel="stylesheet" href="/css/background.css">
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/question.css">
     <link rel="stylesheet" href="/css/editormd.preview.css" />
     <script src="/webjars/jquery/3.4.1/dist/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,6 +21,7 @@
             <div id="info" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="page-header">
                     <h1 th:text="${questionDto.title}">Example page header <small>Subtext for header</small></h1>
+                    <p class="media-data"><span th:text="${questionDto.comment_count}">2</span>个回复·<span th:text="${questionDto.view_count}">31</span>次浏览·<span th:text="${questionDto.like_count}" ></span>个点赞</p>
                 </div>
                 <div id="test-markdown-view">
                     <!-- Server-side output Markdown text -->

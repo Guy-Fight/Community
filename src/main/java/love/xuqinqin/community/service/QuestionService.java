@@ -46,7 +46,7 @@ public class QuestionService {
             QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(publish,questionDto);
 //            questionDto.setGmt_create(new Date().getTime() - publish.getGmt_create());
-            questionDto.setUser(userMapper.SelectByAccountId(String.valueOf(publish.getCreator())));
+            questionDto.setUser(userMapper.SelectById(String.valueOf(publish.getCreator())));
             questionDtos.add(questionDto);
         }
         return questionDtos;
@@ -64,7 +64,7 @@ public class QuestionService {
             QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(publish,questionDto);
 //            questionDto.setGmt_create(new Date().getTime() - publish.getGmt_create());
-            questionDto.setUser(userMapper.SelectByAccountId(String.valueOf(publish.getCreator())));
+            questionDto.setUser(userMapper.SelectById(String.valueOf(publish.getCreator())));
             questionDtos.add(questionDto);
         }
         return questionDtos;
