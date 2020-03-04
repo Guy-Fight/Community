@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/css/background.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/editormd.preview.css" />
+    <script src="/webjars/jquery/3.4.1/dist/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>xxx社区</title>
+</head>
+<body>
+    <div th:replace="~{nav :: nav}"></div>
+    <div class="container">
+        <div class="row" style="padding-top: 30px">
+            <div id="info" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="page-header">
+                    <h1 th:text="${questionDto.title}">Example page header <small>Subtext for header</small></h1>
+                </div>
+                <div id="test-markdown-view">
+                    <!-- Server-side output Markdown text -->
+                    <textarea style="display:none;" th:text="${questionDto.description}">### Hello world!</textarea>
+                </div>
+            </div>
+            <div id="tip" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <blockquote>
+                    <h4>发起人<small th:text="${questionDto.user.name}"></small></h4>
+                    <h4>发起时间<small class="timeC" th:tip="${questionDto.gmt_create}"></small></h4>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    <script src="/js/editormd.js"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
+    <script src="/js/index_timeC.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var testView = editormd.markdownToHTML("test-markdown-view", {
+                emoji: "true"
+                // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+                // htmlDecode : true,  // Enable / disable HTML tag encode.
+                // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+            });
+        });
+    </script>
+</body>
+</html>

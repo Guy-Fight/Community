@@ -30,4 +30,7 @@ public interface PublishMapper {
     @Select("select * from publish where creator = ${id} limit #{startNum},#{maxNum}")
     List<Publish> selectLimitByCreator(@Param(value = "id") int id, int startNum, int maxNum);
 
+    @Select("select * from publish where id = ${id}")
+    Publish selectQuestion(@Param(value = "id")int id);
+
 }

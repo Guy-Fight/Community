@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/background.css">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="webjars/jquery/3.4.1/dist/jquery.min.js"></script>
-    <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/css/background.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/webjars/jquery/3.4.1/dist/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>xxx社区</title>
 </head>
 <body>
@@ -28,7 +28,7 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <a href="#"><h4 class="media-heading" th:text="${info.title}">Middle aligned media</h4></a>
+                        <a href="#" th:href="@{'/question/' + ${info.id}}"><h4 class="media-heading" th:text="${info.title}">Middle aligned media</h4></a>
                         <p class="media-data"><span th:text="${info.comment_count}">2</span>个回复·<span th:text="${info.view_count}">31</span>次浏览·<span class="timeC" th:tip="${info.gmt_create}" ></span></p>
                     </div>
                 </div>
@@ -51,6 +51,6 @@
             </div>
         </div>
     </div>
-    <script src="js/index_timeC.js"></script>
+    <script src="/js/index_timeC.js"></script>
 </body>
 </html>

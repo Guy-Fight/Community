@@ -26,6 +26,11 @@ public class myPublishController {
 
     @GetMapping("/myPublish/{action}")
     public String myPublish(@PathVariable(name="action")String action, @RequestParam(name="page",required = false)String page, HttpServletRequest request, Model model){
+
+        if(request.getSession().getAttribute("user") == null){
+            return "redirect:/";
+        }
+
         if("question".equals(action)){
             int IntPage = 1;
             try{
@@ -33,12 +38,6 @@ public class myPublishController {
             }catch (Exception e){
             //e.printStackTrace();
             }
-
-            if(request.getSession().getAttribute("user") == null){
-                return "redirect:/";
-            }
-
-
             int Creator = ((User)request.getSession().getAttribute("user")).getId();
 
             List<QuestionDto> myQuestionDto = questionService.getMyQuestionDto(Creator,IntPage);
