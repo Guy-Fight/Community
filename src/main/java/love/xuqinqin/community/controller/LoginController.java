@@ -1,13 +1,8 @@
 package love.xuqinqin.community.controller;
 
-import love.xuqinqin.community.mapper.UserMapper;
-import love.xuqinqin.community.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @Author FGuy
@@ -17,21 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private UserMapper userMapper;
+    @GetMapping("/login")
+    public String Login(){
+        return "/login";
+    }
 
-//    @GetMapping("/**")
-//    public String Login(HttpServletRequest request){
-//        Cookie[] cookies = request.getCookies();
-//        for (Cookie cookie : cookies) {
-//            if(cookie.getName().equals("token")){
-//                String token = cookie.getValue();
-//                request.getSession().setAttribute("user",userMapper.Select(token));
-//                break;
-//            }
-//        }
-//
-//        return "index";
-//    }
+    @PostMapping("/login")
+    public String postLogin(){
+
+        return "/login";
+    }
 
 }

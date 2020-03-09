@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/css/background.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/webjars/jquery/3.4.1/dist/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>登录 · xxx社区</title>
+</head>
+<body>
+    <div class="container text-center">
+        <form class="form" method="post">
+            <img src="/favicon.ico" style="width: 64px;height: 64px;">
+            <h1>登录</h1>
+            <input class="form-control" type="text" name="username" placeholder="账号"/>
+            <input class="form-control" type="password" name="password" placeholder="密码"/>
+            <div class="in_on">
+                <div class="row">
+                    <input type="submit" class="btn btn-primary col-lg-5 col-md-5 col-sm-5 col-xs-5" value="登录"/>
+                    <a href="/register" class="btn btn-default col-lg-5 col-md-5 col-sm-5 col-xs-5 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">注册</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

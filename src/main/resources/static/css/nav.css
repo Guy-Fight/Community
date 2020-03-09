@@ -1,0 +1,7 @@
+#search .input-group-addon button{
+    border-width: 0;
+}
+
+#search .input-group-addon {
+    padding: 0;
+}
