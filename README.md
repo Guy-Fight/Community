@@ -1,2 +1,2 @@
 # Community
-###### This is my first Web project for Community.
+###### This is my first web Community project.
